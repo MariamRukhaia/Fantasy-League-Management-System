@@ -3,20 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, text
 from datetime import datetime 
 import bcrypt
+import os
 
 app = Flask(__name__)
-app.secret_key = "123"  
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 
-# Setting up database
 db_cred = {
-     'user': 'root',
-     'pass': '',
-     'host': 'localhost',
-     'name': 'fantasy_league'
-    #'user': 'motentit_admin',         # DATABASE USER
-   # 'pass': 'Databases123!',             # DATABASE PASSWORD
-    #'host': 'localhost',    # DATABASE HOSTNAME
-    #'name': 'motentit_FantasyLeague'
+    "user": os.environ.get("DB_USER", "root"),
+    "pass": os.environ.get("DB_PASSWORD", ""),
+    "host": os.environ.get("DB_HOST", "localhost"),
+    "name": os.environ.get("DB_NAME", "fantasy_league")
 }
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://\
@@ -41,25 +37,25 @@ def login():
     password = request.form['password']
 
     # Get user from the database
-    with db.engine.connect().execution_options(autocommit=True) as connection: # To get updated data from database
+    with db.engine.connect().execution_options(autocommit=True) as connection:
         query = text("SELECT * FROM User WHERE username = :username")
-        result = connection.execute(query, {'username': username}).fetchone()
+        result = connection.execute(
+            query,
+            {'username': username}
+        ).fetchone()
 
     if not result:
         flash('Invalid username or password', 'error')
         return redirect(url_for('welcome'))
 
     hashed_password = result[4]
-    # Password checking
-    try:
-        if result[4] == password: 
-            flash(f'Welcome back, {username}!', 'success')
-            session['user_id'] = result[0]
-            session['username'] = result[1]
 
-            leagues = fetch_leagues_for_user(result[0])
-            return render_template('leagues.html', leagues=leagues)
-        elif bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
+    # Verify hashed password
+    try:
+        if bcrypt.checkpw(
+            password.encode('utf-8'),
+            hashed_password.encode('utf-8')
+        ):
             flash(f'Welcome back, {username}!', 'success')
             session['user_id'] = result[0]
             session['username'] = result[1]
@@ -69,7 +65,8 @@ def login():
         else:
             flash('Invalid username or password', 'error')
             return redirect(url_for('welcome'))
-    except:
+
+    except (ValueError, TypeError):
         flash('Invalid username or password', 'error')
         return redirect(url_for('welcome'))
 
@@ -653,4 +650,4 @@ def new_user(new_username, password, role):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
