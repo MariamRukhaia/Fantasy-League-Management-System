@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propose Trade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">MOTENTITY</h1>
+        </div>
+        <nav class="nav">
+            <a href="/leagues">Home</a>
+            <a href="/trade">Trade</a>
+            <a href="/all-teams">Teams</a>
+            <a href="/waivers">Waivers</a>
+            <a href="/matches">Matches</a>
+            <a href="/newleague">New League</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout" class="logout-btn">Log Out</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="text-center">Propose a Trade</h1>
+        <form method="POST">
+            <div class="draft-pick-container">
+                <h3>My Team</h3>
+                {% for player in user_teams %}
+                    <div>
+                        <input type="radio" name="user_player" value="{{ player.Player_ID }}">
+                        <label>{{ player.FullName }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="draft-pick-container">                <h3>Other Team</h3>
+                {% for player in other_teams %}
+                    <div>
+                        <input type="radio" name="other_player" value="{{ player.Player_ID }}">
+                        <label>{{ player.FullName }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="cta ">
+                <button type="submit" class="btn btn-primary">Propose Trade</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

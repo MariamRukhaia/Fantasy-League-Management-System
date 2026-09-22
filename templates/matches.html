@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">MOTENTITY</h1>
+        </div>
+        <nav class="nav">
+            <a href="/leagues">Home</a>
+            <a href="/trade">Trade</a>
+            <a href="/all-teams">Teams</a>
+            <a href="/waivers">Waivers</a>
+            <a href="/matches">Matches</a>
+            <a href="/newleague">New League</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout" class="logout-btn">Log Out</a>
+        </nav>
+    </header>
+
+    <h1 class="text-center">Teams in the League</h1>
+
+    <div class="search-bar">
+        <form method="POST">
+            <input type="text" name="search_query" value="{{ search_query }}" placeholder="Search for a team" class="search-input">
+            <button type="submit" class="btn-primary">Search</button>
+        </form>
+    </div>
+
+    {% if teams %}
+        {% for team in teams %}
+        
+            <div class="matches">
+                <h3>Matches for {{ team.TeamName }}:</h3>
+                <ul>
+                    {% for match in team_matches %}
+                        <li>
+                            <strong>Match Date:</strong> {{ match.MatchDate }} <br>
+                            <strong>Opponent:</strong> 
+                            {% if match.Team1_ID == team.Team_ID %}
+                                {{ match.team2_name }}
+                            {% else %}
+                                {{ match.team1_name }}
+                            {% endif %}
+                            <br>
+                            <strong>Score:</strong> {{ match.FinalScore }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <form method="POST">
+                <div class="team-container">
+                    <div>
+                        <label>Team Name: {{ team.TeamName }}</label>
+                    </div>
+                    <div>
+                        <label>League: {{ team.League_ID }}</label>
+                    </div>
+                    <div>
+                        <label>Status: {{ 'Active' if team.TeamStatus == 'A' else 'Inactive' }}</label>
+                    </div>
+                    <div>
+                        <label>Total Points: {{ team.TotalPoints }}</label>
+                    </div>
+                    <div>
+                        <label>Ranking: {{ team.Ranking }}</label>
+                    </div>
+                    {% if team.TeamOwner == userid %}
+                        <a href="{{ url_for('player_changes', team_id=team.Team_ID) }}" class="btn-primary">Change Players</a>
+                    {% endif %}
+                    <input type="hidden" name="team_id" value="{{ team.Team_ID }}">
+                </div>
+            </form>
+
+        {% endfor %}
+    {% else %}
+        <p>No teams found for the search query "{{ search_query }}".</p>
+    {% endif %}
+
+    <div class="cta fixed-bottom">
+        <a href="/leagues" class="btn btn-primary">Back to Home</a>
+    </div>
+</body>
+</html>

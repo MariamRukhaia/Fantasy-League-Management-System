@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waivers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+                <h1 class="logo-text">MOTENTITY</h1>
+            </div>
+            <nav class="nav">
+                <a href="/leagues">Home</a>
+                <a href="/trade">Trade</a>
+                <a href="/all-teams">Teams</a>
+                <a href="/waivers">Waivers</a>
+                <a href="/matches">Matches</a>
+                <a href="/newleague">New League</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout" class="logout-btn">Log Out</a>
+            </nav>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <h1>All Waivers:</h1>
+        <a href="/waiver/new" class="btn btn-waivers">New Waiver</a>
+        {% for waiver in waivers %}
+            <div class="team-container">
+                <div>
+                    <label>Waived By: {{ waiver.TeamName }}</label>
+                </div>
+                <div>
+                    <label>Player: {{ waiver.FullName }}</label>
+                </div>
+                <div>
+                    <label>Waiver Status: {{ 'Pending' if waiver.WaiverStatus == 'P' else 'Approved' }}</label>
+                </div>
+                <div>
+                    <label>Pickup Date: {{ waiver.WaiverPickupDate }}</label>
+                </div>
+{#                added this if block for button#}
+                {% if waiver.Commissioner|int == userid|int and waiver.WaiverStatus == "P" %}
+                    <div>
+                        <form method="POST">
+                            <button name="approve" type="submit" class="btn-primary" value="{{ waiver.Waiver_ID }}">Approve Waiver</button>
+                        </form>
+                    </div>
+                {% endif %}
+{#            end of addition#}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="cta fixed-bottom">
+        <a href="/leagues" class="btn btn-primary">Back to Home</a>
+    </div>
+</body>
+</html>

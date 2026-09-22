@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Your Team</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+    <header class="header">
+        <div class="logo">
+                <h1 class="logo-text">MOTENTITY</h1>
+            </div>
+            <nav class="nav">
+                <a href="/leagues">Home</a>
+                <a href="/trade">Trade</a>
+                <a href="/all-teams">Teams</a>
+                <a href="/waivers">Waivers</a>
+                <a href="/matches">Matches</a>
+                <a href="/newleague">New League</a>
+                <a href="/profile">Profile</a>
+                <a href="/logout" class="logout-btn">Log Out</a>
+            </nav>
+    </header>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <h1 class="heading-text">Change Your Team</h1>
+    <div class="draft-pick-container">
+        <header>Your Players</header>
+        {% for player in players %}
+            <div class="team-container">
+                <label>Player {{ player.FullName }} currently plays on your team.</label>
+                <form method="POST">
+                    <button name="delete" type="submit" class="btn-primary" value="{{ player.Player_ID }}">Delete this Player</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{#    changed this section#}
+    <div class="draft-pick-container">
+       {% if draftOpen %}
+            <header>Draft Picks</header>
+            {% for player in freeToDraft %}
+            <div class="team-container">
+                <label>Player {{ player.FullName }} is free to draft.</label>
+                <form method="POST">
+                    <button name="draft" type="submit" class="btn-primary" value="{{ player.Player_ID }}">Draft this Player</button>
+                </form>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% if not draftOpen %}
+            <header>The Draft For This League is Currently Closed</header>
+        {% endif %}
+    </div>
+{#  end of changes #}
+</body>
+    <div class="cta fixed-bottom">
+        <a href="/leagues" class="btn btn-primary">Back to Home</a>
+    </div>
+</html>

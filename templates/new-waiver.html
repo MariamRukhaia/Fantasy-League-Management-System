@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Waiver</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">MOTENTITY</h1>
+        </div>
+        <nav class="nav">
+            <a href="/leagues">Home</a>
+            <a href="/trade">Trade</a>
+            <a href="/all-teams">Teams</a>
+            <a href="/waivers">Waivers</a>
+            <a href="/matches">Matches</a>
+            <a href="/newleague">New League</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout" class="logout-btn">Log Out</a>
+        </nav>
+    </header>
+    <div class="create-league-container">
+        <h1>Waiver Information</h1>
+        <form method="POST" action="/waiver/new">
+            <div class="form-group">
+                <label for="team">Choose Team:</label>
+                <select name="team" id="team">
+                {% for team in waiverSet %}
+                    <option value="{{ team[1] }}">{{ team[0] }}</option>
+                {% endfor %}
+            </select>
+            </div>
+
+            <div class="form-group">
+                <label for="playerid">Choose Player ID:</label>
+                <select name="playerid" id="playerid">
+                {% for team in waiverSet %}
+                    {% for player in waiverSet[team] %}
+                        <option value="{{ player[1] }}">{{ player[0] }}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+
+            </div>
+            
+
+            <button type="submit" class="btn-primary">Create This Waiver</button>
+        </form>
+    </div>
+    <div class="cta fixed-bottom">
+        <a href="/leagues" class="btn btn-primary">Back to Home</a>
+    </div>
+</body>
+</html>

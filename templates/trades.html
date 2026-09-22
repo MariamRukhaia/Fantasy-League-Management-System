@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposed Trades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">MOTENTITY</h1>
+        </div>
+        <nav class="nav">
+            <a href="/leagues">Home</a>
+            <a href="/trade">Trade</a>
+            <a href="/all-teams">Teams</a>
+            <a href="/waivers">Waivers</a>
+            <a href="/matches">Matches</a>
+            <a href="/newleague">New League</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout" class="logout-btn">Log Out</a>
+        </nav>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="propose-trade-button">
+        <a href="/propose-trade" class="btn btn-primary">Propose Trade</a>
+    </div>
+    <h1 class="text-center">Proposed Trades</h1>
+    <div class="team-container">
+        <div class="list-group">
+            {% if trades %}
+                {% for trade in trades %}
+                    <div class="trade-card">
+                        <h3>Trade Details</h3>
+                        <p><strong>Team 1:</strong> {{ trade.Team1_Name }}</p>
+                        <p><strong>Player(s) from Team 1:</strong> {{ trade.Player1_Name }}</p>
+                        <p><strong>Team 2:</strong> {{ trade.Team2_Name }}</p>
+                        <p><strong>Player(s) from Team 2:</strong> {{ trade.Player2_Name }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-center">No trades found for your team.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="cta fixed-bottom">
+        <a href="/leagues" class="btn btn-primary">Back to Home</a>
+    </div>
+</body>
+</html>

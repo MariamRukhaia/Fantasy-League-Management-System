@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Leagues</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/welcome.css') }}">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1 class="logo-text">MOTENTITY</h1>
+        </div>
+        <nav class="nav">
+            <a href="/leagues">Home</a>
+            <a href="/trade">Trade</a>
+            <a href="/all-teams">Teams</a>
+            <a href="/waivers">Waivers</a>
+            <a href="/matches">Matches</a>
+            <a href="/newleague">New League</a>
+            <a href="/profile">Profile</a>
+            <a href="/logout" class="logout-btn">Log Out</a>
+        </nav>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <h1 class="text-center">Select League </h1>
+    <div class="team-container">
+        <div class="list-group">
+            {% for league in leagues %}
+                <div class="league-card">
+                    <h3>{{ league.LeagueName }}</h3>
+                    <p>Max Teams: {{ league.MaxTeams }}</p>
+                    <a href="/teams/{{ league[1] }}" class="btn btn-primary">Access this league</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="cta fixed-bottom">
+        <a href="/leagues" class="btn btn-primary">Back to Home</a>
+    </div>
+</body>
+</html>
+
