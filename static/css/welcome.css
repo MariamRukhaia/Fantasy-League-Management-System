@@ -1,0 +1,511 @@
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4b0082; 
+    color: white;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ed4242;
+    text-transform: uppercase;
+    margin: 0; 
+    padding: 0;
+}
+
+.nav a {
+    margin-left: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+
+.btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #4b0082;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3b0070;
+}
+
+
+.flash-messages {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 10px;
+    text-align: center;
+}
+
+.flash {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.flash-error {
+    background-color: #f44336; 
+    color: white;
+}
+
+.flash-success {
+    background-color: #4caf50; 
+    color: white;
+}
+
+.flash-info {
+    background-color: #2196f3; 
+    color: white;
+}
+
+
+body.welcome-page {
+    background: linear-gradient(to right, #4b0082, #00c3ff);
+    color: white;
+}
+
+body.welcome-page .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+body.welcome-page .hero-content {
+    max-width: 50%;
+}
+
+body.welcome-page .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+body.welcome-page .hero-subtitle {
+    font-size: 1.2rem;
+}
+
+body.welcome-page .sign-in {
+    text-align: center;
+    padding: 90px;
+    background-color: #fff;
+    margin: 20px auto;
+    max-width: 400px;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+body.welcome-page .sign-in h3 {
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    color: black; 
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+
+
+body.welcome-page .login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+body.welcome-page .login-form input {
+    display: block;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+body.welcome-page .login-form input:focus {
+    outline: none;
+    border-color: #4b0082;
+    box-shadow: 0 0 5px rgba(75, 0, 130, 0.5);
+}
+
+body.welcome-page .cta {
+    text-align: center;
+    background: #4b0082;
+    color: white;
+    padding: 20px;
+    margin: 70px auto;
+}
+
+body.welcome-page .cta a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    padding: 10px 30px;
+    background-color: #ff4d4d;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+body.welcome-page .cta a:hover {
+    background-color: #cc0000;
+}
+
+
+body.leagues-page {
+    background-color: #e6e6fa; 
+    color: #333; 
+    font-family: Arial, sans-serif;
+}
+
+body.leagues-page h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 20px;
+    color: #4b0082; 
+}
+
+body.leagues-page .league-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.leagues-page .league-card {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.leagues-page .league-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+body.leagues-page .league-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #4b0082;
+}
+
+body.leagues-page .league-card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+
+.register-container {
+    text-align: center;
+    padding: 50px;
+    background-color: #fff;
+    margin: 90px auto;
+    max-width: 400px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+.register-container h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4b0082; 
+    margin-bottom: 15px;
+}
+
+
+form input[type="text"], form input[type="email"], form input[type="password"] {
+    display: block;
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+
+.btn-primary {
+    background-color: #4b0082;
+    color: white;
+    padding: 10px;
+    width: 100%; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3a006e;
+}
+
+
+.register-container p {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.register-container a {
+    color: #4b0082;
+    text-decoration: none;
+}
+
+.register-container a:hover {
+    text-decoration: underline;
+}
+
+
+.nav a {
+    margin-left: 15px;
+    color: white; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1rem; 
+}
+
+.nav a:hover {
+    text-decoration: underline; 
+}
+
+.logout-btn {
+    color: red; 
+}
+
+.logout-btn:hover {
+    color: darkred; 
+}
+
+
+.profile-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h1 {
+    text-align: center;
+    color: #4b0082;
+    margin-bottom: 20px;
+}
+
+.profile-field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.profile-field label {
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-field div {
+    text-align: right;
+    color: #555;
+}
+
+.btn-primary {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #4b0082;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #3a006e;
+}
+.btn-waivers {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    background-color: #4b0082;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+.team-container {
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.propose-trade-button {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.propose-trade-button .btn {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    background-color: #4b0082;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    width: 200px;
+}
+
+.propose-trade-button .btn:hover {
+    background-color: #6a0dad;
+    color: white;
+}
+
+
+.team-container {
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.draft-pick-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    max-width: 660px; 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.draft-pick-container header {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #4b0082; 
+    text-align: center;
+    padding: 3px 0; 
+    z-index: 1000; 
+}
+
+.fixed-bottom .btn {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #4b0082; 
+    color: white;
+    text-decoration: none;
+}
+
+.fixed-bottom .btn:hover {
+    background-color: #4b0082; 
+}
+
+
+.create-league-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.create-league-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #4b0082;
+}
+
+
+.create-league-container .form-group {
+    margin-bottom: 20px;
+}
+
+.create-league-container .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.create-league-container .form-group input,
+.create-league-container .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.create-league-container .form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
+.create-league-container .btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #4b0082;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-league-container .btn-primary:hover {
+    background-color: #37006d;
+}
